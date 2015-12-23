@@ -19,9 +19,13 @@ module.exports = {
 
           result.title = $('meta[property="og:title"]').attr('content');
           result.url = $('meta[property="og:url"]').attr('content');
-          result.image = $('.img-container img,.sensored img').attr('src').replace('/64x64/','/600x600/').replace('square1200','master1200');
+          result.image = ($('.img-container img,.sensored img').attr('src') || '').replace('/64x64/','/600x600/').replace('square1200','master1200');
 
           result.error = $('.error-message').text().replace('戻る','');
+
+          if($('.player canvas').length > 0){
+            result.error = '不支持显示gif/动画'
+          }
 
           resolve(result);
 
