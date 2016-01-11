@@ -80,6 +80,9 @@ module.exports = {
         res.send(200,generateRandomCard());
         break;
 
+      case '':
+        break;
+
       case '#搜图':
       case '#iqdb':
         var source = command[1];
