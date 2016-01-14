@@ -79,7 +79,7 @@ module.exports = {
       case '#nico':
       case '#nicovideo':
       case '#niconico':
-        var id = parseInt(command[1]);
+        var id = command[1];
 
         sails.services.niconico.id(id)
           .then(function (data) {
