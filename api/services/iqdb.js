@@ -16,7 +16,13 @@ module.exports = {
         formData: {
             MAX_FILE_SIZE: 8388608,
             service: [1,2,3,4,5,6,10,11,12,13],
-            file: fs.createReadStream(filepath),
+            file: {
+              value:fs.createReadStream(filepath),
+              options: {
+                filename: 'topsecret.jpg',
+                contentType: 'image/jpeg'
+              }
+            },
             url: 'http://'
         },
         headers: {
