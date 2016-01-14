@@ -86,7 +86,7 @@ module.exports = {
             if (data.error) {
               res.send(200, 'お探しの動画は再生できません\nこの動画は存在しないか、削除された可能性があります。')
             } else {
-              res.send(200, "[image=" + data.thumbnail_url + "] \n" + data.title + "\n" + data.user_nickname + '@' + data.first_retrieve + '\n' + data.url);
+              res.send(200, "[image=" + data.thumbnail_url + "] \n" + data.title + "\n" + data.user_nickname + '@' + data.first_retrieve + '\n' + '再生:'+ data.view_counter + '\t' + 'コメント:'+ data.comment_num + '\t' +  'マイリスト:' + data.mylist_counter + '\n' + data.url);
             }
           });
         break;

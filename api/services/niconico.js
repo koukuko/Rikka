@@ -22,7 +22,11 @@ module.exports = {
           result.user_nickname = $('user_nickname').text();
           result.thumbnail_url = $('thumbnail_url').text();
           result.first_retrieve = $('first_retrieve').text();
+          result.view_counter = $('view_counter').text();
+          result.comment_num = $('comment_num').text();
+          result.mylist_counter = $('mylist_counter').text();
           result.error = $('error').text();
+
 
           resolve(result);
 
