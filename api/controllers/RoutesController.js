@@ -23,7 +23,7 @@ module.exports = {
   index: function (req, res) {
 
     var message = req.query.message || '';
-    var command = req.query.message.split(' ');
+    var command = req.query.message ?  req.query.message.split(' ') : '';
 
     switch (command[0]) {
 
@@ -107,14 +107,19 @@ module.exports = {
             if (data.error) {
               res.send(200, 'ERROR')
             } else {
-              res.send(200,
-                'Best Match:\n' +
+              if(data.best.image){
+                res.send(200,
+                  'Best Match:\n' +
                   '[image=' + data.best.image + ']\n' +
                   data.best.link + '\n' +
-                data.best.source + '\n' +
-                data.best.size + '\n' +
-                data.best.similarity
-              )
+                  data.best.source + '\n' +
+                  data.best.size + '\n' +
+                  data.best.similarity
+                )
+              } else {
+                res.notFound();
+              }
+
             }
           });
 
