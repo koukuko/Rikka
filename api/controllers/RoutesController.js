@@ -93,7 +93,31 @@ module.exports = {
 
       case '#搜图':
       case '#iqdb':
-        var source = command[1];
+
+        var source = /\[image\=(.*?)\]/g.exec(command[1] || '');
+        if(!source){
+          return res.notFound();
+        }
+
+
+        var source = 'F:/QQBot/image/' + source[1];
+
+        sails.services.iqdb.id(source)
+          .then(function (data) {
+            if (data.error) {
+              res.send(200, 'ERROR')
+            } else {
+              res.send(200,
+                'Best Match:\n' +
+                  '[image=' + data.best.image + ']\n' +
+                  data.best.link + '\n' +
+                data.best.source + '\n' +
+                data.best.size + '\n' +
+                data.best.similarity
+              )
+            }
+          });
+
         break;
 
       default:
