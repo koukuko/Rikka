@@ -107,7 +107,7 @@ module.exports = {
             if (data.error) {
               res.send(200, 'ERROR')
             } else {
-              if(data.best.image){
+              if(data.best.link){
                 res.send(200,
                   'Best Match:\n' +
                   '[image=' + data.best.image + ']\n' +
