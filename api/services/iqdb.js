@@ -13,9 +13,11 @@ module.exports = {
     return new Promise(function(resolve,reject){
       request('http://iqdb.org/', {
         method: 'POST',
-        form: {
+        formData: {
+            MAX_FILE_SIZE: 8388608,
             service: [1,2,3,4,5,6,10,11,12,13],
-            file: fs.createReadStream(filepath)
+            file: fs.createReadStream(filepath),
+            url: 'http://'
         }
       })
         .then(function(response){
