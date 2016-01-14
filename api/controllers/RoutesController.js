@@ -102,7 +102,7 @@ module.exports = {
 
         var source = 'F:/QQBot/image/' + source[1];
 
-        sails.services.iqdb.id(source)
+        sails.services.iqdb.file(source)
           .then(function (data) {
             if (data.error) {
               res.send(200, 'ERROR')
