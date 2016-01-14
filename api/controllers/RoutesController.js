@@ -37,9 +37,6 @@ module.exports = {
 
         sails.services.pixiv.id(id)
           .then(function (data) {
-
-            console.log(data);
-
             if (!data.image) {
               if (data.error) {
                 res.send(200, data.error);
@@ -47,9 +44,8 @@ module.exports = {
                 res.send(200, '該当作品は削除されたか、存在しない作品IDです。')
               }
             } else {
-              res.send(200, "[image=http://172.16.4.52:1337/pixiv?url=" + data.image + "&id=" + id + "] \n" + data.title + "\n" + data.url);
+              res.send(200, "[image=http://127.0.0.1:1337/pixiv?url=" + data.image + "&id=" + id + "] \n" + data.title + "\n" + data.url);
             }
-
           });
 
 
@@ -80,7 +76,19 @@ module.exports = {
         res.send(200,generateRandomCard());
         break;
 
-      case '':
+      case '#nico':
+      case '#nicovideo':
+      case '#niconico':
+        var id = parseInt(command[1]);
+
+        sails.services.niconico.id(id)
+          .then(function (data) {
+            if (data.error) {
+              res.send(200, 'お探しの動画は再生できません\nこの動画は存在しないか、削除された可能性があります。')
+            } else {
+              res.send(200, "[image=" + data.thumbnail_url + "] \n" + data.title + "\n" + data.user_nickname + '@' + data.first_retrieve + '\n' + data.url);
+            }
+          });
         break;
 
       case '#搜图':
